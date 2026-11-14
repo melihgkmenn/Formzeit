@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>Formzeit</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>tr</string>
+		<string>en</string>
+		<string>de</string>
+		<string>fr</string>
+		<string>es</string>
+		<string>it</string>
+		<string>ar</string>
+		<string>da</string>
+		<string>nl</string>
+		<string>fi</string>
+		<string>id</string>
+		<string>ja</string>
+		<string>ko</string>
+		<string>nb</string>
+		<string>pl</string>
+		<string>pt</string>
+		<string>ro</string>
+		<string>ru</string>
+		<string>zh-Hans</string>
+		<string>sv</string>
+		<string>th</string>
+		<string>vi</string>
+	</array>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.widgetkit-extension</string>
+	</dict>
+</dict>
+</plist>

@@ -12,20 +12,14 @@
   },
   "files": [
     {
-      "kind": "group",
-      "path": "App",
-      "children": [
-        { "path": "Assets.xcassets", "target-membership": [ "New Project Watch/resources" ] },
-      ],
-    }, {
       "kind": "folder",
       "path": "App",
       "target-membership": [
-        "New Project",
+        "Formzeit",
       ],
       "membership-exceptions": [
         {
-          "target": "New Project",
+          "target": "Formzeit",
           "exclusions": [
             "Info.plist",
           ],
@@ -35,25 +29,11 @@
       "kind": "folder",
       "path": "Watch",
       "target-membership": [
-        "New Project Watch",
+        "Formzeit Watch",
       ],
       "membership-exceptions": [
         {
-          "target": "New Project Watch",
-          "exclusions": [
-            "Info.plist",
-          ],
-        },
-      ],
-    }, {
-      "kind": "folder",
-      "path": "Widget",
-      "target-membership": [
-        "New ProjectWidget",
-      ],
-      "membership-exceptions": [
-        {
-          "target": "New ProjectWidget",
+          "target": "Formzeit Watch",
           "exclusions": [
             "Info.plist",
           ],
@@ -63,26 +43,100 @@
       "kind": "group",
       "name": "Products",
       "children": [
-        { "path": "<PRODUCTS>/New Project Watch.app", "id": "4D871A25329624C7D27B83B5", "type": "wrapper.application", "index": false, "target-membership": [ { "build-phase": "New Project/copy/Embed Watch Content", "header-preservation": "remove-on-copy" } ] },
-        { "path": "<PRODUCTS>/New Project.app", "id": "6FCFE669AD08195F38AEBFAD", "index": false },
-        { "path": "<PRODUCTS>/New ProjectWidget.appex", "id": "88802AB7278A74BFA2001BEF", "index": false, "target-membership": [ { "build-phase": "New Project/copy/Embed Foundation Extensions", "header-preservation": "remove-on-copy" } ] },
+        { "path": "<PRODUCTS>/Formzeit.app", "id": "FB81858D30A7DBF800FFFFFF", "type": "wrapper.application", "index": false },
+        { "path": "<PRODUCTS>/Formzeit Watch.app", "id": "FB99B40B30A7DC9F00FFFFFF", "type": "wrapper.application", "index": false, "target-membership": [ { "build-phase": "Formzeit/copy/Embed Watch Content", "platforms": [ "ios" ], "header-preservation": "remove-on-copy" } ] },
+        { "path": "<PRODUCTS>/Formzeit Widget Extension.appex", "id": "FBCA723A30A7DCAC00FFFFFF", "type": "wrapper.app-extension", "index": false, "target-membership": [ { "build-phase": "Formzeit/copy/Embed Foundation Extensions", "header-preservation": "remove-on-copy" } ] },
+        { "path": "<PRODUCTS>/Formzeit Watch Widget Extension.appex", "id": "FBEA943130A7DCBF00FFFFFF", "type": "wrapper.app-extension", "index": false, "target-membership": [ { "build-phase": "Formzeit Watch/copy/Embed Foundation Extensions", "header-preservation": "remove-on-copy" } ] },
+        { "path": "<PRODUCTS>/Formzeit Live Activity.appex", "id": "FB31345430A7DCCC00FFFFFF", "type": "wrapper.app-extension", "index": false, "target-membership": [ { "build-phase": "Formzeit/copy/Embed Live Activity", "platforms": [ "ios" ], "header-preservation": "remove-on-copy" } ] },
+      ],
+    }, {
+      "kind": "folder",
+      "path": "Widget Extension",
+      "target-membership": [
+        "Formzeit Widget Extension",
+      ],
+      "membership-exceptions": [
+        {
+          "target": "Formzeit Widget Extension",
+          "exclusions": [
+            "Info.plist",
+          ],
+        }, {
+          "target": "Formzeit Watch Widget Extension",
+          "inclusions": [
+            "ClockWidget.swift",
+          ],
+        },
+      ],
+    }, {
+      "kind": "folder",
+      "path": "WatchWidget",
+      "target-membership": [
+        "Formzeit Watch Widget Extension",
+      ],
+      "membership-exceptions": [
+        {
+          "target": "Formzeit Watch Widget Extension",
+          "exclusions": [
+            "Info.plist",
+          ],
+        },
+      ],
+    }, {
+      "kind": "folder",
+      "path": "LiveActivity",
+      "target-membership": [
+        "Formzeit Live Activity",
+      ],
+      "membership-exceptions": [
+        {
+          "target": "Formzeit Live Activity",
+          "exclusions": [
+            "Info.plist",
+          ],
+        },
+      ],
+    }, {
+      "kind": "folder",
+      "path": "Shared",
+      "target-membership": [
+        "Formzeit",
+        "Formzeit Watch",
+        "Formzeit Watch Widget Extension",
+        "Formzeit Widget Extension",
+      ],
+      "membership-exceptions": [
+        {
+          "target": "Formzeit Live Activity",
+          "inclusions": [
+            "Localizable.xcstrings",
+          ],
+        },
+      ],
+    },
+    { "kind": "folder", "path": "SharedActivity", "target-membership": [ "Formzeit", "Formzeit Live Activity" ] },
+    {
+      "kind": "group",
+      "name": "Shared Assets",
+      "children": [
+        { "path": "App/Assets.xcassets", "target-membership": [ "Formzeit Watch/resources" ] },
       ],
     },
   ],
   "targets": [
     {
-      "name": "New Project",
-      "id": "DABFF7B1B589EBC2B3F90E6E",
-      "product": "Products/New Project.app",
+      "name": "Formzeit",
+      "id": "FB81858C30A7DBF800FFFFFF",
+      "product": "Products/Formzeit.app",
       "product-type": "application",
-      "legacy-provisioning-style": "automatic",
-      "legacy-team-id": "3RQG7N49WW",
       "dependencies": [
-        "New ProjectWidget",
-        "New Project Watch",
+        "Formzeit Widget Extension",
+        { "target": "Formzeit Watch", "platforms": [ "ios" ] },
+        { "target": "Formzeit Live Activity", "platforms": [ "ios" ] },
       ],
       "build-phases": [
         "compile-sources",
+        "frameworks",
         "resources",
         {
           "kind": "copy",
@@ -93,6 +147,10 @@
           "name": "Embed Watch Content",
           "bundle-base-path": "build-products-directory",
           "relative-path": "$(CONTENTS_FOLDER_PATH)/Watch",
+        }, {
+          "kind": "copy",
+          "name": "Embed Live Activity",
+          "bundle-base-path": "plugins-directory",
         },
       ],
       "build-settings": {
@@ -104,6 +162,8 @@
         "CURRENT_PROJECT_VERSION": "1",
         "ENABLE_APP_SANDBOX": "YES",
         "ENABLE_OUTGOING_NETWORK_CONNECTIONS": "YES",
+        "EXCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]": "DeskSessionAttributes.swift",
+        "GENERATE_INFOPLIST_FILE": "YES",
         "INFOPLIST_FILE": "App/Info.plist",
         "IPHONEOS_DEPLOYMENT_TARGET": "26.0",
         "LD_RUNPATH_SEARCH_PATHS": [
@@ -123,60 +183,138 @@
         "TARGETED_DEVICE_FAMILY": "1,2",
       },
     }, {
-      "name": "New Project Watch",
-      "id": "7C74FF5D5EBAF0F5EA17DB23",
-      "product": "Products/New Project Watch.app",
+      "name": "Formzeit Watch",
+      "id": "FB99B40A30A7DC9F00FFFFFF",
+      "product": "Products/Formzeit Watch.app",
       "product-type": "application",
-      "legacy-provisioning-style": "automatic",
-      "legacy-team-id": "3RQG7N49WW",
+      "dependencies": [
+        "Formzeit Watch Widget Extension",
+      ],
       "build-phases": [
         "compile-sources",
+        "frameworks",
         "resources",
+        {
+          "kind": "copy",
+          "name": "Embed Foundation Extensions",
+          "bundle-base-path": "plugins-directory",
+        },
       ],
       "build-settings": {
         "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
         "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
         "CURRENT_PROJECT_VERSION": "1",
+        "GENERATE_INFOPLIST_FILE": "YES",
         "INFOPLIST_FILE": "Watch/Info.plist",
         "MARKETING_VERSION": "1.0",
         "PRODUCT_BUNDLE_IDENTIFIER": "app.bitrig.new.8a945682-55a5-4dce-bb90-fc7140a8fd5f.watchkitapp",
         "PRODUCT_NAME": "$(TARGET_NAME)",
         "SDKROOT": "watchos",
         "SKIP_INSTALL": "YES",
+        "SUPPORTED_PLATFORMS": "watchos watchsimulator",
         "SWIFT_VERSION": "5.0",
         "TARGETED_DEVICE_FAMILY": "4",
         "WATCHOS_DEPLOYMENT_TARGET": "26.0",
       },
     }, {
-      "name": "New ProjectWidget",
-      "id": "6C0E67591056647983A2597C",
-      "product": "Products/New ProjectWidget.appex",
+      "name": "Formzeit Widget Extension",
+      "id": "FBCA723930A7DCAC00FFFFFF",
+      "product": "Products/Formzeit Widget Extension.appex",
       "product-type": "app-extension",
-      "legacy-provisioning-style": "automatic",
-      "legacy-team-id": "3RQG7N49WW",
       "build-phases": [
         "compile-sources",
+        "frameworks",
         "resources",
       ],
       "build-settings": {
         "APPLICATION_EXTENSION_API_ONLY": "YES",
-        "CODE_SIGN_ENTITLEMENTS": "Widget/Widget.entitlements",
+        "CODE_SIGN_ENTITLEMENTS": "Widget Extension/Widget.entitlements",
         "CODE_SIGN_IDENTITY[sdk=macosx*]": "-",
         "CURRENT_PROJECT_VERSION": "1",
-        "INFOPLIST_FILE": "Widget/Info.plist",
+        "GENERATE_INFOPLIST_FILE": "YES",
+        "INFOPLIST_FILE": "Widget Extension/Info.plist",
         "IPHONEOS_DEPLOYMENT_TARGET": "26.0",
         "LD_RUNPATH_SEARCH_PATHS": [
           "$(inherited)",
           "@executable_path/Frameworks",
           "@executable_path/../../Frameworks",
         ],
+        "LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]": [
+          "$(inherited)",
+          "@executable_path/../Frameworks",
+          "@executable_path/../../../../Frameworks",
+        ],
         "MACOSX_DEPLOYMENT_TARGET": "26.0",
         "MARKETING_VERSION": "1.0",
-        "PRODUCT_BUNDLE_IDENTIFIER": "app.bitrig.new.8a945682-55a5-4dce-bb90-fc7140a8fd5f.widget",
+        "PRODUCT_BUNDLE_IDENTIFIER": "app.bitrig.new.8a945682-55a5-4dce-bb90-fc7140a8fd5f.widget-extension",
         "PRODUCT_NAME": "$(TARGET_NAME)",
         "SDKROOT": "auto",
         "SKIP_INSTALL": "YES",
         "SUPPORTED_PLATFORMS": "iphoneos iphonesimulator macosx",
+        "SUPPORTS_MACCATALYST": "NO",
+        "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
+        "SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD": "YES",
+        "SWIFT_VERSION": "5.0",
+        "TARGETED_DEVICE_FAMILY": "1,2",
+      },
+    }, {
+      "name": "Formzeit Watch Widget Extension",
+      "id": "FBEA943030A7DCBF00FFFFFF",
+      "product": "Products/Formzeit Watch Widget Extension.appex",
+      "product-type": "app-extension",
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "build-settings": {
+        "APPLICATION_EXTENSION_API_ONLY": "YES",
+        "CURRENT_PROJECT_VERSION": "1",
+        "GENERATE_INFOPLIST_FILE": "YES",
+        "INFOPLIST_FILE": "WatchWidget/Info.plist",
+        "LD_RUNPATH_SEARCH_PATHS": [
+          "$(inherited)",
+          "@executable_path/Frameworks",
+          "@executable_path/../../Frameworks",
+        ],
+        "MARKETING_VERSION": "1.0",
+        "PRODUCT_BUNDLE_IDENTIFIER": "app.bitrig.new.8a945682-55a5-4dce-bb90-fc7140a8fd5f.watchkitapp.widget-extension",
+        "PRODUCT_NAME": "$(TARGET_NAME)",
+        "SDKROOT": "watchos",
+        "SKIP_INSTALL": "YES",
+        "SUPPORTED_PLATFORMS": "watchos watchsimulator",
+        "SWIFT_VERSION": "5.0",
+        "TARGETED_DEVICE_FAMILY": "4",
+        "WATCHOS_DEPLOYMENT_TARGET": "26.0",
+      },
+    }, {
+      "name": "Formzeit Live Activity",
+      "id": "FB31345330A7DCCC00FFFFFF",
+      "product": "Products/Formzeit Live Activity.appex",
+      "product-type": "app-extension",
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "build-settings": {
+        "APPLICATION_EXTENSION_API_ONLY": "YES",
+        "CODE_SIGN_IDENTITY[sdk=macosx*]": "-",
+        "CURRENT_PROJECT_VERSION": "1",
+        "GENERATE_INFOPLIST_FILE": "YES",
+        "INFOPLIST_FILE": "LiveActivity/Info.plist",
+        "IPHONEOS_DEPLOYMENT_TARGET": "26.0",
+        "LD_RUNPATH_SEARCH_PATHS": [
+          "$(inherited)",
+          "@executable_path/Frameworks",
+          "@executable_path/../../Frameworks",
+        ],
+        "MARKETING_VERSION": "1.0",
+        "PRODUCT_BUNDLE_IDENTIFIER": "app.bitrig.new.8a945682-55a5-4dce-bb90-fc7140a8fd5f.live-activity",
+        "PRODUCT_NAME": "$(TARGET_NAME)",
+        "SDKROOT": "iphoneos",
+        "SKIP_INSTALL": "YES",
+        "SUPPORTED_PLATFORMS": "iphoneos iphonesimulator",
         "SUPPORTS_MACCATALYST": "NO",
         "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "NO",
         "SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD": "YES",

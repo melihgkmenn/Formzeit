@@ -4,5 +4,10 @@ import WidgetKit
 @main
 struct WidgetBundleDefinition: WidgetBundle {
   var body: some Widget {
+    ClockWidget()
+    #if os(iOS)
+    LockScreenClockWidget()
+    #endif
+    ClockControl()
   }
 }
